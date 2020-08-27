@@ -7,13 +7,6 @@ const client = new Client({
 })
 client.connect();
 
-//
-var CaSi = class{
-  constructor(key, HOTEN, HINH, MOTA){
-    this.id = key,
-    this.hoten = HOTEN
-  }
-};
 
 const getAll = (request, response) => {
   client.query('SELECT * FROM products', (error, results) => {
@@ -29,7 +22,10 @@ const getAllCaSi = (request, response) => {
     if (error) {
       throw error
     }
-    response.status(200).json(results.rows)
+    return response.status(200).json({
+      data: results.rows,
+      status: 200
+    })
   })
 }
 
