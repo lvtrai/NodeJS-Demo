@@ -28,7 +28,6 @@ const getCasiByPage=(request, response)=>{
   var perPage = 5;
   var end = (page -1) * perPage;
   var sql = `SELECT * FROM casi LIMIT ${perPage} OFFSET ${end}`;
-  console.log(end);
   client.query(sql,  (error, results) =>{
     if (error) {
       throw error
