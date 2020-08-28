@@ -5,17 +5,10 @@ const client = new Client({
   connectionString: connectionString,
   ssl: { rejectUnauthorized: false }
 })
-client.connect();
-
-
-const getAll = (request, response) => {
-  client.query('SELECT * FROM products', (error, results) => {
-    if (error) {
-      throw error
-    }
-    response.status(200).json(results.rows)
-  })
-}
+client.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
 
 const getAllCaSi = (request, response) => {
   client.query('SELECT * FROM casi', (error, results) => {
@@ -29,7 +22,24 @@ const getAllCaSi = (request, response) => {
   })
 }
 
+const getPage=(request, response)=>{
+  var page = parseInt(request.query.page) || 1;
+  var perPage = 5;
+  var start = (page -1) * perPage;
+  var end = page - perPage;
+
+  client.query('SELECT * FROM casi LIMIT 5 OFFSET 5',  (error, results) =>{
+    if (error) {
+      throw error
+    }
+    return response.status(200).json({
+      data: results.rows,
+      status: 200
+    })
+});
+}
+
 module.exports = {
-  getAll: getAll,
-  getAllCaSi:getAllCaSi
+  getAllCaSi:getAllCaSi,
+  getPage:getPage
 }

@@ -14,8 +14,9 @@ app.get('/', (request, response) => {
 })
 
 
-app.get('/products', db.getAll)
-app.get('/casi', db.getAllCaSi)
+app.get('/casi', db.getAllCaSi);
+
+app.get('/casipage', db.getPage)
 
 
 app.use(function(req, res) {
