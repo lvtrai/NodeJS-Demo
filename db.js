@@ -22,13 +22,14 @@ const getAllCaSi = (request, response) => {
   })
 }
 
+
 const getPage=(request, response)=>{
   var page = parseInt(request.query.page) || 1;
   var perPage = 5;
-  var start = (page -1) * perPage;
-  var end = page - perPage;
-
-  client.query('SELECT * FROM casi LIMIT 5 OFFSET 5',  (error, results) =>{
+  var end = (page -1) * perPage;
+  var sql = `SELECT * FROM casi LIMIT ${perPage} OFFSET ${end}`;
+  console.log(end);
+  client.query(sql,  (error, results) =>{
     if (error) {
       throw error
     }
