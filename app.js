@@ -13,12 +13,7 @@ app.get('/', (request, response) => {
   response.json({ info: 'API Node JS' })
 })
 
-
-app.get('/casi', db.getAllCaSi);
-
-app.get('/casipage', db.getPage)
-
-
+app.get('/casi', db.getCasiByPage)
 
 app.use(function(req, res) {
   res.status(404).send({url: req.originalUrl + ' not found'})

@@ -23,7 +23,7 @@ const getAllCaSi = (request, response) => {
 }
 
 
-const getPage=(request, response)=>{
+const getCasiByPage=(request, response)=>{
   var page = parseInt(request.query.page) || 1;
   var perPage = 5;
   var end = (page -1) * perPage;
@@ -41,6 +41,5 @@ const getPage=(request, response)=>{
 }
 
 module.exports = {
-  getAllCaSi:getAllCaSi,
-  getPage:getPage
+  getCasiByPage:getCasiByPage
 }
