@@ -1,6 +1,7 @@
 //connect
 const connectionString = 'postgres://xxbaefvimfpxga:ca9fed0f54881b71797cc1c8055bcecdcc10a33cd46739cbc6aaa441f9cb9c24@ec2-34-236-215-156.compute-1.amazonaws.com:5432/dbl90pc2jp5i80';
 const { Client } = require('pg');
+const { request, response } = require('express');
 const client = new Client({
   connectionString: connectionString,
   ssl: { rejectUnauthorized: false }
@@ -39,6 +40,20 @@ const getCasiByPage=(request, response)=>{
 });
 }
 
+const tinhTong=(request, response)=>{
+  let so1 = parseInt(request.params.so1);
+  let so2 = parseInt(request.params.so2);
+  let plus = so1+so2;
+  if (error) {
+    throw error
+  }
+  return response.status(200).json({
+    data: plus.rows,
+    status: 200
+  })
+}
+
 module.exports = {
-  getCasiByPage:getCasiByPage
+  getCasiByPage:getCasiByPage,
+  tinhTong:tinhTong
 }
