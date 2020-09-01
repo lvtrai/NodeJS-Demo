@@ -41,8 +41,8 @@ const getCasiByPage=(request, response)=>{
 }
 
 const tinhTong=(request, response)=>{
-  let so1 = parseInt(request.params.so1);
-  let so2 = parseInt(request.params.so2);
+  let so1 = parseInt(request.params.numberOne);
+  let so2 = parseInt(request.params.numberTwo);
   let plus = so1+so2;
   if (error) {
     throw error
